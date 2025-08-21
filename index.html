@@ -13,7 +13,6 @@
     html, body {
       height: 100%;
       background: #ffffff;
-      overflow: hidden;
     }
     #frame-container {
       width: 100vw;
@@ -48,36 +47,11 @@
   </div>
 
   <script>
-    // Disable right click
-    document.addEventListener("contextmenu", e => e.preventDefault());
-
-    // Disable common shortcuts
-    document.addEventListener("keydown", e => {
-      if (
-        e.key === "F12" || 
-        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
-        (e.ctrlKey && (e.key === "U" || e.key === "S"))
-      ) {
-        e.preventDefault();
-        return false;
-      }
+    // Disable right-click everywhere
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+      alert("Right-click is disabled on this page.");
     });
-
-    // Detect DevTools (basic check by size difference)
-    setInterval(function () {
-      if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
-        document.body.innerHTML = "<h2 style='text-align:center; margin-top:20%; color:red;'>⚠ Developer Tools Detected. Access Blocked.</h2>";
-      }
-    }, 1000);
-
-    // Console timing trick (detect if console is open)
-    (function() {
-      let devtools = /./;
-      devtools.toString = function() {
-        document.body.innerHTML = "<h2 style='text-align:center; margin-top:20%; color:red;'>⚠ Developer Tools Detected. Access Blocked.</h2>";
-      };
-      console.log("%c", devtools);
-    })();
   </script>
 </body>
 </html>
